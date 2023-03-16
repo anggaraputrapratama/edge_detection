@@ -59,7 +59,7 @@
 
         <Button
             android:layout_marginTop="16dp"
-            android:id="@+id/containedButton"
+            android:id="@+id/shut"
             android:layout_width="312dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

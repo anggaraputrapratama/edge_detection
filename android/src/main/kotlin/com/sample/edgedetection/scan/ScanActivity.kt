@@ -49,16 +49,16 @@ class ScanActivity : BaseActivity(), IScanView.Proxy {
             }
         }
 
-        flash.visibility =
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
-                        // to hidde the flashLight button from  SDK versions which we do not handle the permission for!
-                        Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q &&
-                        //
-                        baseContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
-                ) View.VISIBLE else View.GONE;
-        flash.setOnClickListener {
-            mPresenter.toggleFlash();
-        }
+//        flash.visibility =
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
+//                        // to hidde the flashLight button from  SDK versions which we do not handle the permission for!
+//                        Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q &&
+//                        //
+//                        baseContext.packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
+//                ) View.VISIBLE else View.GONE;
+//        flash.setOnClickListener {
+//            mPresenter.toggleFlash();
+//        }
 
         val initialBundle = intent.getBundleExtra(EdgeDetectionHandler.INITIAL_BUNDLE) as Bundle;
         // NullPointerException here in case directly FROM_GALLERY
@@ -66,22 +66,22 @@ class ScanActivity : BaseActivity(), IScanView.Proxy {
             this.title = initialBundle.getString(EdgeDetectionHandler.SCAN_TITLE) as String
         }
         //
-        gallery.visibility =
-                if (initialBundle.getBoolean(EdgeDetectionHandler.CAN_USE_GALLERY, true))
-                    View.VISIBLE
-                else View.GONE;
-
-        gallery.setOnClickListener {
-            pickupFromGallery()
-        };
-
-        if (initialBundle.containsKey(EdgeDetectionHandler.FROM_GALLERY) && initialBundle.getBoolean(
-                        EdgeDetectionHandler.FROM_GALLERY,
-                        false
-                )
-        ) {
-            pickupFromGallery()
-        }
+//        gallery.visibility =
+//                if (initialBundle.getBoolean(EdgeDetectionHandler.CAN_USE_GALLERY, true))
+//                    View.VISIBLE
+//                else View.GONE;
+//
+//        gallery.setOnClickListener {
+//            pickupFromGallery()
+//        };
+//
+//        if (initialBundle.containsKey(EdgeDetectionHandler.FROM_GALLERY) && initialBundle.getBoolean(
+//                        EdgeDetectionHandler.FROM_GALLERY,
+//                        false
+//                )
+//        ) {
+//            pickupFromGallery()
+//        }
     }
 
     fun pickupFromGallery() {

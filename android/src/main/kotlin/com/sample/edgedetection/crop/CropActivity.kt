@@ -105,15 +105,16 @@ class CropActivity : BaseActivity(), ICropView.Proxy {
             Log.e(TAG, "Rotate touched!")
             mPresenter.rotate()
             return true
-        } else if (item.itemId == R.id.gray) {
-            Log.e(TAG, "Black White touched!")
-            mPresenter.enhance()
-            return true
-        } else if (item.itemId == R.id.reset) {
-            Log.e(TAG, "Reset touched!")
-            mPresenter.reset()
-            return true
         }
+//        else if (item.itemId == R.id.gray) {
+//            Log.e(TAG, "Black White touched!")
+//            mPresenter.enhance()
+//            return true
+//        } else if (item.itemId == R.id.reset) {
+//            Log.e(TAG, "Reset touched!")
+//            mPresenter.reset()
+//            return true
+//        }
 
         return super.onOptionsItemSelected(item)
     }
