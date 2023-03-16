@@ -22,11 +22,11 @@
         android:adjustViewBounds="true"
         android:scaleType="fitXY" />
 
-    <com.sample.edgedetection.view.PaperRectangle
-        android:id="@+id/paper_rect"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorTransparent" />
+<!--    <com.sample.edgedetection.view.PaperRectangle-->
+<!--        android:id="@+id/paper_rect"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/colorTransparent" />-->
 
     <!-- </RelativeLayout> -->
 
@@ -69,10 +69,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        >
+        android:background="#FFFFFF"
+
+        android:padding="15dp">
 
         <ImageView
             android:id="@+id/crop"
