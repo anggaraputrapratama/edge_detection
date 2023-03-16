@@ -44,12 +44,13 @@ class EdgeDetectionHandler : MethodCallHandler, PluginRegistry.ActivityResultLis
     companion object {
         public const val INITIAL_BUNDLE = "initial_bundle"
         public const val FROM_GALLERY = "from_gallery"
-        public const val SAVE_TO = "save_to"
+        public const val SAVE_CROP_TO = "save_crop_to"
+        public const val SAVE_PICTURE_TO = "save_picture_to"
         public const val CAN_USE_GALLERY = "can_use_gallery"
         public const val SCAN_TITLE = "scan_title"
-        public const val CROP_TITLE = "crop_title"
-        public const val CROP_BLACK_WHITE_TITLE = "crop_black_white_title"
-        public const val CROP_RESET_TITLE = "crop_reset_title"
+        // public const val CROP_TITLE = "crop_title"
+        // public const val CROP_BLACK_WHITE_TITLE = "crop_black_white_title"
+        // public const val CROP_RESET_TITLE = "crop_reset_title"
     }
 
     fun setActivityPluginBinding(activityPluginBinding: ActivityPluginBinding) {
@@ -106,14 +107,15 @@ class EdgeDetectionHandler : MethodCallHandler, PluginRegistry.ActivityResultLis
         val initialIntent =
             Intent(Intent(getActivity()?.applicationContext, ScanActivity::class.java))
         val bundle = Bundle();
-        bundle.putString(SAVE_TO, call.argument<String>(SAVE_TO) as String)
+        bundle.putString(SAVE_CROP_TO, call.argument<String>(SAVE_CROP_TO) as String)
+        bundle.putString(SAVE_PICTURE_TO, call.argument<String>(SAVE_PICTURE_TO) as String)
         bundle.putString(SCAN_TITLE, call.argument<String>(SCAN_TITLE) as String)
-        bundle.putString(CROP_TITLE, call.argument<String>(CROP_TITLE) as String)
-        bundle.putString(
-            CROP_BLACK_WHITE_TITLE,
-            call.argument<String>(CROP_BLACK_WHITE_TITLE) as String
-        )
-        bundle.putString(CROP_RESET_TITLE, call.argument<String>(CROP_RESET_TITLE) as String)
+        // bundle.putString(CROP_TITLE, call.argument<String>(CROP_TITLE) as String)
+        // bundle.putString(
+        //     CROP_BLACK_WHITE_TITLE,
+        //     call.argument<String>(CROP_BLACK_WHITE_TITLE) as String
+        // )
+        // bundle.putString(CROP_RESET_TITLE, call.argument<String>(CROP_RESET_TITLE) as String)
         bundle.putBoolean(CAN_USE_GALLERY, call.argument<Boolean>(CAN_USE_GALLERY) as Boolean)
         initialIntent.putExtra(INITIAL_BUNDLE, bundle)
         getActivity()?.startActivityForResult(initialIntent, REQUEST_CODE)
@@ -127,13 +129,13 @@ class EdgeDetectionHandler : MethodCallHandler, PluginRegistry.ActivityResultLis
         val initialIntent =
             Intent(Intent(getActivity()?.applicationContext, ScanActivity::class.java))
         val bundle = Bundle();
-        bundle.putString(SAVE_TO, call.argument<String>(SAVE_TO) as String)
-        bundle.putString(CROP_TITLE, call.argument<String>(CROP_TITLE) as String)
-        bundle.putString(
-            CROP_BLACK_WHITE_TITLE,
-            call.argument<String>(CROP_BLACK_WHITE_TITLE) as String
-        )
-        bundle.putString(CROP_RESET_TITLE, call.argument<String>(CROP_RESET_TITLE) as String)
+        bundle.putString(SAVE_CROP_TO, call.argument<String>(SAVE_CROP_TO) as String)
+        // bundle.putString(CROP_TITLE, call.argument<String>(CROP_TITLE) as String)
+        // bundle.putString(
+        //     CROP_BLACK_WHITE_TITLE,
+        //     call.argument<String>(CROP_BLACK_WHITE_TITLE) as String
+        // )
+        // bundle.putString(CROP_RESET_TITLE, call.argument<String>(CROP_RESET_TITLE) as String)
         bundle.putBoolean(FROM_GALLERY, call.argument<Boolean>(FROM_GALLERY) as Boolean)
         initialIntent.putExtra(INITIAL_BUNDLE, bundle)
         getActivity()?.startActivityForResult(initialIntent, REQUEST_CODE)

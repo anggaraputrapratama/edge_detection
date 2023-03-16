@@ -4,10 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
-import android.graphics.Point
-import android.graphics.Rect
-import android.graphics.YuvImage
+import android.graphics.*
 import android.hardware.Camera
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraCharacteristics
@@ -37,6 +34,8 @@ import org.opencv.core.Size
 import org.opencv.imgcodecs.Imgcodecs
 import org.opencv.imgproc.Imgproc
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -61,6 +60,9 @@ class ScanPresenter constructor(
 
     private var mLastClickTime = 0L
     private var shutted: Boolean = true
+    private var oriPicture: Bitmap? = null
+
+    
 
     init {
         mSurfaceHolder.addCallback(this)
@@ -228,6 +230,26 @@ class ScanPresenter constructor(
 
     }
 
+    fun saveOriPicture(pic: Mat){
+        try{
+             oriPicture = Bitmap.createBitmap(
+                pic?.width() ?: 1080, pic?.height()
+                    ?: 1920, Bitmap.Config.ARGB_8888
+            )
+            Utils.matToBitmap(pic, oriPicture)
+            val file = File(initialBundle.getString(EdgeDetectionHandler.SAVE_PICTURE_TO) as String);
+
+            val outStream = FileOutputStream(file)
+            oriPicture?.compress(Bitmap.CompressFormat.JPEG, 100, outStream)
+            outStream.flush()
+            outStream.close()
+            oriPicture?.recycle()
+            Log.i(com.sample.edgedetection.processor.TAG, "CroppedBitmap Saved")
+        }catch (e: Exception){
+            Log.d("saveOri",e.message.toString())
+        }
+    }
+
     fun detectEdge(pic: Mat) {
         SourceManager.corners = processPicture(pic)
         Imgproc.cvtColor(pic, pic, Imgproc.COLOR_RGB2BGRA)
@@ -270,7 +292,10 @@ class ScanPresenter constructor(
                 )
                 mat.put(0, 0, p0)
                 val pic = Imgcodecs.imdecode(mat, Imgcodecs.CV_LOAD_IMAGE_UNCHANGED)
+                //ini misal sebelum
                 Core.rotate(pic, pic, Core.ROTATE_90_CLOCKWISE)
+                //ini setelah
+                saveOriPicture(pic)
                 mat.release()
                 detectEdge(pic);
                 shutted = true;

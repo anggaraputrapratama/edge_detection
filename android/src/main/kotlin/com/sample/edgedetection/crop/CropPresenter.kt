@@ -150,7 +150,7 @@ class CropPresenter(
     }
 
     fun save() {
-        val file = File(initialBundle.getString(EdgeDetectionHandler.SAVE_TO) as String);
+        val file = File(initialBundle.getString(EdgeDetectionHandler.SAVE_CROP_TO) as String);
 
         val rotatePic = rotateBitmap
         if (null != rotatePic) {

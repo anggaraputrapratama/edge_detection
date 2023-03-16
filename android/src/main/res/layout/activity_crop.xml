@@ -69,10 +69,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="15dp"
         android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
-
-        android:padding="15dp">
+        android:background="@color/colorPrimary"
+        >
 
         <ImageView
             android:id="@+id/crop"

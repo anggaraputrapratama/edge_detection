@@ -36,18 +36,20 @@ class _MyAppState extends State<MyApp> {
     }
 
 // Generate filepath for saving
-    String imagePath = join((await getApplicationSupportDirectory()).path,
+    String imageCropPath = join((await getApplicationSupportDirectory()).path,
         "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
+    String imagePath = join((await getApplicationSupportDirectory()).path,
+        "image_${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
 
     try {
       //Make sure to await the call to detectEdge.
       bool success = await EdgeDetection.detectEdge(
-        imagePath,
+        imageCropPath, imagePath,
         canUseGallery: true,
         androidScanTitle: 'Scanning', // use custom localizations for android
         androidCropTitle: 'Crop',
-        androidCropBlackWhiteTitle: 'Black White',
-        androidCropReset: 'Reset',
+        // androidCropBlackWhiteTitle: 'Black White',
+        // androidCropReset: 'Reset',
       );
     } catch (e) {
       print(e);
@@ -59,21 +61,21 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _imagePath = imagePath;
+      _imagePath = imageCropPath;
     });
   }
 
-
   Future<void> getImageFromGallery() async {
 // Generate filepath for saving
-    String imagePath = join((await getApplicationSupportDirectory()).path,
+    String imageCropPath = join((await getApplicationSupportDirectory()).path,
         "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
 
-    print("$imagePath : _imagePath");
+    print("$imageCropPath : _imagePath");
 
     try {
       //Make sure to await the call to detectEdgeFromGallery.
-      bool success = await EdgeDetection.detectEdgeFromGallery(imagePath,
+      bool success = await EdgeDetection.detectEdgeFromGallery(
+        imageCropPath,
         androidCropTitle: 'Crop', // use custom localizations for android
         androidCropBlackWhiteTitle: 'Black White',
         androidCropReset: 'Reset',
@@ -89,7 +91,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _imagePath = imagePath;
+      _imagePath = imageCropPath;
     });
   }
 
