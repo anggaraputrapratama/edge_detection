@@ -44,8 +44,30 @@ class CropActivity : BaseActivity(), ICropView.Proxy {
         findViewById<ImageView>(R.id.crop).setOnClickListener {
             Log.e(TAG, "Crop touched!")
             mPresenter.crop()
-            changeMenuVisibility(true)
+//            changeMenuVisibility(true)
+            setContentView(R.layout.crop_activity)
+
+
+            findViewById<ImageView>(R.id.action_label).setOnClickListener {
+                Log.e(TAG, "Saved touched!")
+                // Bug fix: prevent clicking more than one time
+                it.isEnabled = false
+                mPresenter.save()
+                setResult(Activity.RESULT_OK)
+                System.gc()
+                finish()
+            }
+
+            findViewById<ImageView>(R.id.rotation_image).setOnClickListener {
+                Log.e(TAG, "Rotate touched!")
+                mPresenter.rotate()
+
+            }
+
+
+
         }
+
     }
 
     override fun getPaper(): ImageView = paper

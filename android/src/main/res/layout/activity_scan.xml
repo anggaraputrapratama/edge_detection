@@ -27,25 +27,6 @@
         android:paddingRight="24dp"
         android:paddingBottom="30dp">
 
-        <!--        <ImageView-->
-        <!--            android:id="@+id/flash"-->
-        <!--            android:layout_width="50dp"-->
-        <!--            android:layout_height="50dp"-->
-        <!--            android:layout_alignParentRight="false"-->
-        <!--            android:layout_centerVertical="true"-->
-        <!--            android:background="@drawable/round_button"-->
-        <!--            android:padding="12dp"-->
-        <!--            app:srcCompat="@drawable/ic_baseline_flash_on_24"-->
-        <!--            app:tint="@android:color/white" />-->
-
-        <!--        <ImageView-->
-        <!--            android:id="@+id/shut"-->
-        <!--            android:layout_width="65dp"-->
-        <!--            android:layout_height="65dp"-->
-        <!--            android:layout_centerInParent="true"-->
-        <!--            android:background="@drawable/shut_button"-->
-        <!--            app:tint="@android:color/white" />-->
-
         <TextView
             android:id="@+id/text_view_id"
             android:layout_width="305dp"
@@ -66,16 +47,7 @@
             android:background="@drawable/button_round"
             android:text="@string/scanButton" />
 
-        <!--        <ImageView-->
-        <!--            android:id="@+id/gallery"-->
-        <!--            android:layout_width="50dp"-->
-        <!--            android:layout_height="50dp"-->
-        <!--            android:layout_alignParentEnd="true"-->
-        <!--            android:layout_centerVertical="true"-->
-        <!--            android:background="@drawable/round_button"-->
-        <!--            android:padding="12dp"-->
-        <!--            app:srcCompat="@drawable/ic_menu_gallery"-->
-        <!--            app:tint="@android:color/white" />-->
+
 
     </LinearLayout>
 

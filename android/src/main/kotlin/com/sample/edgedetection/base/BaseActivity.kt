@@ -17,8 +17,9 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(provideContentViewId())
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initPresenter()
-        transparentStatusBar()
+        // transparentStatusBar()
         prepare()
+        supportActionBar?.hide()
     }
 
     fun transparentStatusBar(
