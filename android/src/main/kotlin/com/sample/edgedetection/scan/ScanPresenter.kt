@@ -292,10 +292,22 @@ class ScanPresenter constructor(
                 )
                 mat.put(0, 0, p0)
                 val pic = Imgcodecs.imdecode(mat, Imgcodecs.CV_LOAD_IMAGE_UNCHANGED)
-                //ini misal sebelum
                 Core.rotate(pic, pic, Core.ROTATE_90_CLOCKWISE)
-                //ini setelah
-                saveOriPicture(pic)
+                //change color pic for saving
+                // Check if image has an alpha channel
+                val savePic = if (pic.channels() == 4) {
+                    // Convert to RGB color image by removing alpha channel and swapping blue and red channels
+                    val convertedPic = Mat()
+                    Imgproc.cvtColor(pic, convertedPic, Imgproc.COLOR_BGRA2RGB)
+                    convertedPic
+                } else {
+                    // Convert to RGB color image and swap blue and red channels
+                    val convertedPic = Mat()
+                    Imgproc.cvtColor(pic, convertedPic, Imgproc.COLOR_BGR2RGB)
+                    convertedPic
+                }
+
+                saveOriPicture(savePic)
                 mat.release()
                 detectEdge(pic);
                 shutted = true;
